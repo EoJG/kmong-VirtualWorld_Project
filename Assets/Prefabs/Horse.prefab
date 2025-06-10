@@ -2011,6 +2011,7 @@ GameObject:
   - component: {fileID: 2378743604191422829}
   - component: {fileID: 2378743604191422826}
   - component: {fileID: 2378743604191422827}
+  - component: {fileID: -8872513019635816249}
   m_Layer: 8
   m_Name: Horse
   m_TagString: Horse
@@ -2111,6 +2112,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slider: {fileID: 2378743603949335897}
   isEating: 0
+--- !u!114 &-8872513019635816249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2378743604191149144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58261a2363ac7a94cbf0a7c8948b31f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grid: {fileID: 0}
+  canMoveGird: 
+  nearMat: {fileID: 2100000, guid: 24f1646c2d951444a8bc3492b175b266, type: 2}
+  blankMat: {fileID: 2100000, guid: 3dd7d2acbd1085c47b579da657413f64, type: 2}
 --- !u!1 &2378743604191149486
 GameObject:
   m_ObjectHideFlags: 0

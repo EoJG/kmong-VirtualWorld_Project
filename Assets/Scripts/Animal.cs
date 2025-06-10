@@ -87,8 +87,8 @@ public class Animal : MonoBehaviour
 
             yield return new WaitForSeconds(randomTime);
 
-            float randomX = Random.Range(-23f, 23f);
-            float randomY = Random.Range(-13f, 33f);
+            float randomX = Random.Range(-20f, 20f);
+            float randomY = Random.Range(-10f, 30f);
             Vector3 randomPos = new Vector3(randomX, 0, randomY);
 
             agent.SetDestination(randomPos);

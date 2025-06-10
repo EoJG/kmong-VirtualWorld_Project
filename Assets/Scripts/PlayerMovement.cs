@@ -7,6 +7,8 @@ public class PlayerMovement : MonoBehaviour
 {
     public List<GameObject> foods;
 
+    public GameObject grid;
+
     Transform playerCamera;
 
     public Camera firstPersonCamera;
@@ -47,6 +49,14 @@ public class PlayerMovement : MonoBehaviour
         Feed();
         ChangeView();
 
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            if (grid.activeSelf)
+                grid.SetActive(false);
+            else
+                grid.SetActive(true);
+        }
+
         if (Input.GetKeyDown(KeyCode.R))
         {
             if (!fixedMinimap)
@@ -82,7 +92,7 @@ public class PlayerMovement : MonoBehaviour
         pitch = Mathf.Clamp(pitch, -cameraPitchLimit, cameraPitchLimit);
 
         playerCamera.localRotation = Quaternion.Euler(pitch, 0f, 0f);
-        transform.Rotate(Vector3.up * mouseX);  
+        transform.Rotate(Vector3.up * mouseX);
     }
 
     void Feed()

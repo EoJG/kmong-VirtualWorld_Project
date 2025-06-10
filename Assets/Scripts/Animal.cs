@@ -11,6 +11,8 @@ public class Animal : MonoBehaviour
     Animator animator;
     NavMeshAgent agent;
 
+    PlayerMovement player;
+
     float maxHungry = 10f;
     float hungry;
     float curFeedingTime = 2.7f;
@@ -23,6 +25,8 @@ public class Animal : MonoBehaviour
         animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
 
+        player = GameObject.FindFirstObjectByType<PlayerMovement>();
+
         StartCoroutine(Hunger());
         StartCoroutine(RandomMove());
 
@@ -32,7 +36,18 @@ public class Animal : MonoBehaviour
 
     private void Update()
     {
-        slider.transform.forward = Camera.main.transform.forward;
+        if (!player.isThirdPerson)
+        {
+            if(!slider.gameObject.activeSelf)
+                slider.gameObject.SetActive(true);
+
+            slider.transform.forward = Camera.main.transform.forward;
+        }
+        else
+        {
+            if (slider.gameObject.activeSelf)
+                slider.gameObject.SetActive(false);
+        }
 
         slider.value = hungry / maxHungry;
 

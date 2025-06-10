@@ -9,6 +9,9 @@ public class PlayerMovement : MonoBehaviour
 
     Transform playerCamera;
 
+    public Camera firstPersonCamera;
+    public Camera thirdPersonCamera;
+
     public RawImage minimap;
     public RenderTexture rotatingMinimapRT;
     public RenderTexture fixedMinimapRT;
@@ -24,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
     float pitch = 0f;
     float rayDistance = 5f;
 
+    public bool isThirdPerson = false;
     bool fixedMinimap = false;
 
     void Start()
@@ -41,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
         Move();
         Look();
         Feed();
+        ChangeView();
 
         if (Input.GetKeyDown(KeyCode.R))
         {
@@ -118,5 +123,16 @@ public class PlayerMovement : MonoBehaviour
 
         GameObject instFood = Instantiate(foods[inventory.index], spawnPos, Quaternion.identity);
         instFood.GetComponent<FlyingFood>().SetDirection(((hitPos + (Vector3.up * 1)) - spawnPos).normalized);
+    }
+
+    void ChangeView()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            isThirdPerson = !isThirdPerson;
+
+            firstPersonCamera.enabled = !isThirdPerson;
+            thirdPersonCamera.enabled = isThirdPerson;
+        }
     }
 }

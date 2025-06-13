@@ -1194,6 +1194,8 @@ MonoBehaviour:
   mouseSensitivity: 2
   cameraPitchLimit: 80
   isThirdPerson: 0
+  pointPrefab: {fileID: 7572920729532037754, guid: c5be43a37b184da46a7a35e4cbe6320b, type: 3}
+  lr: {fileID: 0}
 --- !u!114 &6005672286543704174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1210,6 +1212,7 @@ MonoBehaviour:
   canMoveGird: 
   nearMat: {fileID: 2100000, guid: 87f32c257486ecd488e34cd5d05a5f25, type: 2}
   blankMat: {fileID: 2100000, guid: 3dd7d2acbd1085c47b579da657413f64, type: 2}
+  nearGridIndex: -1
 --- !u!1 &3495746853023973852
 GameObject:
   m_ObjectHideFlags: 0

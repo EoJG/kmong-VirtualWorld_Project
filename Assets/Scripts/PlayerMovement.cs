@@ -48,6 +48,7 @@ public class PlayerMovement : MonoBehaviour
         Look();
         Feed();
         ChangeView();
+        MoveBezier();
 
         if (Input.GetKeyDown(KeyCode.G))
         {
@@ -99,7 +100,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+            Ray ray = new Ray(firstPersonCamera.transform.position, firstPersonCamera.transform.forward);
             RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit, rayDistance))
@@ -144,5 +145,112 @@ public class PlayerMovement : MonoBehaviour
             firstPersonCamera.enabled = !isThirdPerson;
             thirdPersonCamera.enabled = isThirdPerson;
         }
+    }
+
+    public GameObject pointPrefab;
+
+    List<GameObject> instPoints = new List<GameObject>();
+    Coroutine bezierCoroutine;
+
+    void MoveBezier()
+    {
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            if (instPoints.Count > 0)
+            {
+                foreach (GameObject obj in instPoints)
+                {
+                    Destroy(obj);
+                }
+                instPoints.Clear();
+            }
+
+            NearestGrid nearestGrid = GetComponent<NearestGrid>();
+
+            instPoints.Add(Instantiate(pointPrefab, grid.transform.GetChild(nearestGrid.nearGridIndex).position, Quaternion.identity));
+
+            List<int> gridIndexList = new List<int>(nearestGrid.canMoveGird);
+            for (int i = 0; i < gridIndexList.Count; i++)
+            {
+                if (gridIndexList[i] == nearestGrid.nearGridIndex)
+                {
+                    gridIndexList.RemoveAt(i);
+                    break;
+                }
+            }
+
+            for (int i = 0; i < 3; i++)
+            {
+                int randIndex = Random.Range(0, gridIndexList.Count);
+
+                instPoints.Add(Instantiate(pointPrefab, grid.transform.GetChild(gridIndexList[randIndex]).position, Quaternion.identity));
+
+                gridIndexList.RemoveAt(randIndex);
+            }
+
+            DrawBezierCurve(instPoints[0].transform.position, instPoints[1].transform.position, instPoints[2].transform.position, instPoints[3].transform.position);
+
+            GetComponent<CharacterController>().enabled = false;
+
+            if (bezierCoroutine != null)
+                StopCoroutine(bezierCoroutine);
+            bezierCoroutine = StartCoroutine(MoveAlongBezier(instPoints[0].transform.position, instPoints[1].transform.position, instPoints[2].transform.position, instPoints[3].transform.position));
+        }
+    }
+
+    Vector3 BezierPoint(float t, Vector3 p0, Vector3 p1, Vector3 p2, Vector3 p3)
+    {
+        float u = 1 - t;
+        float tt = t * t;
+        float uu = u * u;
+        float uuu = uu * u;
+        float ttt = tt * t;
+
+        Vector3 point = uuu * p0;
+        point += 3 * uu * t * p1;
+        point += 3 * u * tt * p2;
+        point += ttt * p3;
+
+        return point;
+    }
+
+    public LineRenderer lr;
+
+    void DrawBezierCurve(Vector3 p0, Vector3 p1, Vector3 p2, Vector3 p3)
+    {
+        if (!lr.enabled)
+            lr.enabled = true;
+
+        int resolution = 20;
+        lr.positionCount = resolution + 1;
+
+        for (int i = 0; i <= resolution; i++)
+        {
+            float t = i / (float)resolution;
+            lr.SetPosition(i, BezierPoint(t, p0, p1, p2, p3));
+        }
+    }
+
+    public float moveDuration = 3f;
+
+    IEnumerator MoveAlongBezier(Vector3 p0, Vector3 p1, Vector3 p2, Vector3 p3)
+    {
+        float elapsed = 0f;
+
+        while (elapsed < moveDuration)
+        {
+            float t = elapsed / moveDuration;
+            Vector3 pointOnCurve = BezierPoint(t, p0, p1, p2, p3);
+
+            transform.position = pointOnCurve;
+
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        // 마지막 위치 보정
+        transform.position = p3;
+
+        GetComponent<CharacterController>().enabled = true;
     }
 }

@@ -14,6 +14,7 @@ public class NearestGrid : MonoBehaviour
     string instNearMatName;
     string instBlankMatName;
 
+    public int nearGridIndex = -1;
     int prevIndex = -1;
 
     void Start()
@@ -27,7 +28,6 @@ public class NearestGrid : MonoBehaviour
 
     void Update()
     {
-        int nearGridIndex = -1;
         float minDist = float.MaxValue;
 
         foreach (int v in canMoveGird)
@@ -57,11 +57,11 @@ public class NearestGrid : MonoBehaviour
 
     void OnDestroy()
     {
-        if (prevIndex > -1)
-        {
-            MeshRenderer prevMeshRender = grid.transform.GetChild(prevIndex).GetChild(4).GetComponent<MeshRenderer>();
-            if (prevMeshRender.material.name == instNearMatName)
-                prevMeshRender.material = blankMat;
-        }
+        //if (prevIndex > -1)
+        //{
+        //    MeshRenderer prevMeshRender = grid.transform.GetChild(prevIndex).GetChild(4).GetComponent<MeshRenderer>();
+        //    if (prevMeshRender.material.name == instNearMatName)
+        //        prevMeshRender.material = blankMat;
+        //}
     }
 }

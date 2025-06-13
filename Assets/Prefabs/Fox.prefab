@@ -862,6 +862,10 @@ GameObject:
   - component: {fileID: 3073959044678021509}
   - component: {fileID: 3073959044678021511}
   - component: {fileID: -8355816090092168213}
+  - component: {fileID: -8496759163537462229}
+  - component: {fileID: -7332181625093084937}
+  - component: {fileID: -3882884111571411567}
+  - component: {fileID: -7225922240440185967}
   m_Layer: 8
   m_Name: Fox
   m_TagString: Fox
@@ -966,6 +970,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54c44072bbebf434a86e83c0ba399339, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  needFood: 2
   slider: {fileID: 3512348951825582507}
   isEating: 0
 --- !u!114 &-8355816090092168213
@@ -984,6 +989,70 @@ MonoBehaviour:
   canMoveGird: 
   nearMat: {fileID: 2100000, guid: 24f1646c2d951444a8bc3492b175b266, type: 2}
   blankMat: {fileID: 2100000, guid: 3dd7d2acbd1085c47b579da657413f64, type: 2}
+  nearGridIndex: -1
+--- !u!114 &-8496759163537462229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3073959044687472946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c8c54262afe26e488359c987c79a7e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isSelected: 1
+  pathMat: {fileID: 2100000, guid: 43103f2027cda6b43aeee6820e334a29, type: 2}
+  unselectedPathMat: {fileID: 2100000, guid: f1d79d2ee6199364e8595c273fe6ac67, type: 2}
+  blankMat: {fileID: 2100000, guid: 3dd7d2acbd1085c47b579da657413f64, type: 2}
+--- !u!114 &-7332181625093084937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3073959044687472946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 542d18bd99433944988113b1804abe5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isSelected: 0
+  pathMat: {fileID: 2100000, guid: 43103f2027cda6b43aeee6820e334a29, type: 2}
+  unselectedPathMat: {fileID: 2100000, guid: f1d79d2ee6199364e8595c273fe6ac67, type: 2}
+  blankMat: {fileID: 2100000, guid: 3dd7d2acbd1085c47b579da657413f64, type: 2}
+--- !u!114 &-3882884111571411567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3073959044687472946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74d1aaa0baf7b864088a56248d2b1dc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isSelected: 0
+  pathMat: {fileID: 2100000, guid: 43103f2027cda6b43aeee6820e334a29, type: 2}
+  unselectedPathMat: {fileID: 2100000, guid: f1d79d2ee6199364e8595c273fe6ac67, type: 2}
+  blankMat: {fileID: 2100000, guid: 3dd7d2acbd1085c47b579da657413f64, type: 2}
+--- !u!114 &-7225922240440185967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3073959044687472946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b9489c618dfcdd4da95a425dada330b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bfs: {fileID: -8496759163537462229}
+  greedy: {fileID: -7332181625093084937}
+  aStar: {fileID: -3882884111571411567}
 --- !u!1 &3073959044687481148
 GameObject:
   m_ObjectHideFlags: 0

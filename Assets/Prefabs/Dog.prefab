@@ -2217,6 +2217,10 @@ GameObject:
   - component: {fileID: 4039382933960685232}
   - component: {fileID: 4039382933960685234}
   - component: {fileID: 8201145215370525985}
+  - component: {fileID: 1726273471610623939}
+  - component: {fileID: 382282164478803633}
+  - component: {fileID: 3524831442919434681}
+  - component: {fileID: -1388960029459085628}
   m_Layer: 8
   m_Name: Dog
   m_TagString: Dog
@@ -2346,6 +2350,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54c44072bbebf434a86e83c0ba399339, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  needFood: 1
   slider: {fileID: 4039382932145601909}
   isEating: 0
 --- !u!114 &8201145215370525985
@@ -2364,6 +2369,70 @@ MonoBehaviour:
   canMoveGird: 
   nearMat: {fileID: 2100000, guid: 24f1646c2d951444a8bc3492b175b266, type: 2}
   blankMat: {fileID: 2100000, guid: 3dd7d2acbd1085c47b579da657413f64, type: 2}
+  nearGridIndex: -1
+--- !u!114 &1726273471610623939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4039382933960685235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c8c54262afe26e488359c987c79a7e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isSelected: 1
+  pathMat: {fileID: 2100000, guid: 43103f2027cda6b43aeee6820e334a29, type: 2}
+  unselectedPathMat: {fileID: 2100000, guid: f1d79d2ee6199364e8595c273fe6ac67, type: 2}
+  blankMat: {fileID: 2100000, guid: 3dd7d2acbd1085c47b579da657413f64, type: 2}
+--- !u!114 &382282164478803633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4039382933960685235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 542d18bd99433944988113b1804abe5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isSelected: 0
+  pathMat: {fileID: 2100000, guid: 43103f2027cda6b43aeee6820e334a29, type: 2}
+  unselectedPathMat: {fileID: 2100000, guid: f1d79d2ee6199364e8595c273fe6ac67, type: 2}
+  blankMat: {fileID: 2100000, guid: 3dd7d2acbd1085c47b579da657413f64, type: 2}
+--- !u!114 &3524831442919434681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4039382933960685235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74d1aaa0baf7b864088a56248d2b1dc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isSelected: 0
+  pathMat: {fileID: 2100000, guid: 43103f2027cda6b43aeee6820e334a29, type: 2}
+  unselectedPathMat: {fileID: 2100000, guid: f1d79d2ee6199364e8595c273fe6ac67, type: 2}
+  blankMat: {fileID: 2100000, guid: 3dd7d2acbd1085c47b579da657413f64, type: 2}
+--- !u!114 &-1388960029459085628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4039382933960685235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b9489c618dfcdd4da95a425dada330b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bfs: {fileID: 1726273471610623939}
+  greedy: {fileID: 382282164478803633}
+  aStar: {fileID: 3524831442919434681}
 --- !u!1 &4039382933960686299
 GameObject:
   m_ObjectHideFlags: 0
